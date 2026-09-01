@@ -106,7 +106,7 @@ HuggingFace API Token
 
 ```bash
 git clone https://github.com/SumantraPrajapati/AI-Code-Refactorer.git
-cd Code-Refactorer
+cd AI-Code-Refactorer
 ```
 
 ### 2. Create a virtual environment
