@@ -5,6 +5,11 @@ An AI-powered code refactoring application that analyzes source code and generat
 The application provides a simple **Streamlit interface** where users can upload source-code files and get an AI-refactored version of their code.
 
 ---
+### Preview
+
+
+https://github.com/user-attachments/assets/c5868209-8352-4089-8fc2-0abd6b19f108
+
 
 ## Features
 
