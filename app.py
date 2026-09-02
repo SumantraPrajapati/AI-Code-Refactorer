@@ -459,41 +459,42 @@ def load_model():
 model = load_model()
 
 prompt = PromptTemplate(
-    template  = """
+    template="""
+You are an expert code refactoring engine.
 
-You are an expert Code refactoring engine.
-
-Analyze and refactor the following code.
+Analyze and refactor the following {language} code.
 
 You MUST follow this exact format:
 
 BUG:
-<bug description>
+<each real defect found, or exactly NONE if there are none>
 
 EXPLANATION:
-<explanation>
+<what you changed, or "No changes required" if the code is already correct>
 
 REFACTORED_CODE:
-<complete code>
+<complete code, raw, with no markdown fences>
 
 IMPROVEMENTS:
-- <improvement 1>
-- <improvement 2>
-- <improvement 3>
+<one bullet per change you actually made, or exactly NONE>
 
 Rules:
-- Do not add any text before BUG:
-- Do not add any text after the improvements.
+- A bug is ONLY: a crash, a wrong result, a resource leak, a security issue, or undefined behavior.
+- Missing features, missing tests, missing error handling for impossible inputs, or
+  "this code does nothing useful" are NOT bugs. Never report them.
+- If the code is already correct, write BUG: NONE and return the code unchanged.
+- Never invent defects. Never add features or suggest new functionality.
+- Never change public APIs, signatures, or behavior.
 - Do not provide multiple solutions.
 - Preserve the intended behavior.
 - Always provide the complete refactored code.
+- Do not add any text before BUG: and no text after the improvements.
 
 CODE:
 
 {code}
-"""
-,
-input_variables=['code'],
+""",
+    input_variables=['code', 'language'],
 )
 
 parser = StrOutputParser()
